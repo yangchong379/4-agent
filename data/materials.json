@@ -1,0 +1,41 @@
+{
+  "description": "Synthetic 小影 product facts; not official product capability claims.",
+  "materials": [
+    {
+      "id": "P01",
+      "product": "小影",
+      "keywords": [
+        "字幕",
+        "小影",
+        "剪辑",
+        "渲染",
+        "视频"
+      ],
+      "facts": [
+        "支持字幕。"
+      ]
+    },
+    {
+      "id": "P02",
+      "product": "小影",
+      "keywords": [
+        "字幕样式",
+        "样式"
+      ],
+      "facts": [
+        "支持手动调整字幕样式。"
+      ]
+    }
+  ],
+  "brand_rules": {
+    "version": "synthetic-brand-v1",
+    "prohibited_phrases": [
+      "效率提升80%",
+      "保证",
+      "百分百",
+      "全网第一"
+    ],
+    "characters_per_second": 4,
+    "minimum_scene_seconds": 2
+  }
+}

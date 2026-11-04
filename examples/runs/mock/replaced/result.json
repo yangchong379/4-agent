@@ -1,0 +1,520 @@
+{
+  "schema_version": "1.0",
+  "mode": "offline_mock",
+  "model": "deterministic-script-policy-v1",
+  "request": {
+    "audience": "新手创作者",
+    "platform": "抖音",
+    "request_id": "replaced",
+    "style": "轻松",
+    "target_seconds": 30,
+    "topic": "小影字幕"
+  },
+  "status": "completed",
+  "stop_reason": "finished",
+  "error": null,
+  "title": "小影功能演示",
+  "storyboard": [
+    {
+      "scene": 1,
+      "visual": "创作者出镜",
+      "lines": [
+        {
+          "text": "今天看看这个功能。",
+          "source_ids": []
+        }
+      ],
+      "hold_seconds": 7,
+      "narration": "今天看看这个功能。",
+      "estimated_seconds": 9
+    },
+    {
+      "scene": 2,
+      "visual": "产品界面示意",
+      "lines": [
+        {
+          "text": "支持添加贴纸。",
+          "source_ids": [
+            "P01"
+          ]
+        }
+      ],
+      "hold_seconds": 7,
+      "narration": "支持添加贴纸。",
+      "estimated_seconds": 9
+    },
+    {
+      "scene": 3,
+      "visual": "结尾文字卡",
+      "lines": [
+        {
+          "text": "你可以按需要继续编辑。",
+          "source_ids": []
+        }
+      ],
+      "hold_seconds": 7,
+      "narration": "你可以按需要继续编辑。",
+      "estimated_seconds": 9.5
+    }
+  ],
+  "estimated_total_seconds": 27.5,
+  "source_material_ids": [
+    "P01"
+  ],
+  "retrieved_materials": [
+    {
+      "id": "P01",
+      "product": "小影",
+      "keywords": [
+        "字幕",
+        "小影",
+        "剪辑",
+        "渲染",
+        "视频"
+      ],
+      "facts": [
+        "支持添加贴纸。"
+      ]
+    }
+  ],
+  "script_version": 2,
+  "duration_check": {
+    "ok": true,
+    "script_version": 2,
+    "passed": true,
+    "estimated_total_seconds": 27.5,
+    "target_seconds": 30,
+    "over_by_seconds": 0,
+    "scenes": [
+      {
+        "scene": 1,
+        "spoken_characters": 8,
+        "spoken_seconds": 2.0,
+        "hold_seconds": 7,
+        "estimated_seconds": 9
+      },
+      {
+        "scene": 2,
+        "spoken_characters": 6,
+        "spoken_seconds": 1.5,
+        "hold_seconds": 7,
+        "estimated_seconds": 9
+      },
+      {
+        "scene": 3,
+        "spoken_characters": 10,
+        "spoken_seconds": 2.5,
+        "hold_seconds": 7,
+        "estimated_seconds": 9.5
+      }
+    ],
+    "method": "Synthetic 4 spoken characters/second, min 2 seconds per shot plus explicit holds. Not TTS measurement."
+  },
+  "rule_check": {
+    "ok": true,
+    "script_version": 2,
+    "passed": true,
+    "risks": [],
+    "rule_version": "synthetic-brand-v1",
+    "note": "Exact supported facts or approved neutral lines only; no arbitrary semantic claim verifier."
+  },
+  "risks": [],
+  "missing_fields": [],
+  "uncompleted_reason": null,
+  "dataset_sha256": "60fd1b112aa77006d1f1c4fb08bcd38a762a0e05daee7e7484f27359ff524974",
+  "model_calls": 9,
+  "max_steps": 32,
+  "trace": [
+    {
+      "step": 1,
+      "action": {
+        "tool": "inspect_request",
+        "arguments": {},
+        "rationale": "读取用户要求和品牌规则"
+      },
+      "observation": {
+        "ok": true,
+        "request": {
+          "audience": "新手创作者",
+          "platform": "抖音",
+          "request_id": "replaced",
+          "style": "轻松",
+          "target_seconds": 30,
+          "topic": "小影字幕"
+        },
+        "missing_fields": [],
+        "brand_rules": {
+          "version": "synthetic-brand-v1",
+          "prohibited_phrases": [
+            "效率提升80%",
+            "保证",
+            "百分百",
+            "全网第一"
+          ],
+          "characters_per_second": 4,
+          "minimum_scene_seconds": 2
+        },
+        "approved_neutral_lines": [
+          "今天看看这个功能。",
+          "跟着画面一起看。",
+          "你可以按需要继续编辑。",
+          "现在试着写下你的想法。"
+        ],
+        "approved_titles": [
+          "小影功能演示",
+          "一个功能小技巧",
+          "看看这个功能"
+        ],
+        "visual_options": [
+          "产品界面示意",
+          "字幕局部特写",
+          "创作者出镜",
+          "结尾文字卡"
+        ],
+        "scope": "Facts must be exact retrieved material statements. Narration is editable but edits require fresh checks."
+      },
+      "next_action": "search_materials"
+    },
+    {
+      "step": 2,
+      "action": {
+        "tool": "search_materials",
+        "arguments": {
+          "query": "小影字幕"
+        },
+        "rationale": "根据检索观察补查素材"
+      },
+      "observation": {
+        "ok": true,
+        "matches": [
+          {
+            "id": "P01",
+            "product": "小影",
+            "keywords": [
+              "字幕",
+              "小影",
+              "剪辑",
+              "渲染",
+              "视频"
+            ],
+            "facts": [
+              "支持添加贴纸。"
+            ]
+          }
+        ],
+        "query": "小影字幕",
+        "note": "No matching fact means ask for material, never invent features or efficacy."
+      },
+      "next_action": "compose_script"
+    },
+    {
+      "step": 3,
+      "action": {
+        "tool": "compose_script",
+        "arguments": {
+          "title": "小影功能演示",
+          "scenes": [
+            {
+              "visual": "创作者出镜",
+              "lines": [
+                {
+                  "text": "今天看看这个功能。",
+                  "source_ids": []
+                }
+              ],
+              "hold_seconds": 10
+            },
+            {
+              "visual": "产品界面示意",
+              "lines": [
+                {
+                  "text": "支持添加贴纸。",
+                  "source_ids": [
+                    "P01"
+                  ]
+                }
+              ],
+              "hold_seconds": 10
+            },
+            {
+              "visual": "结尾文字卡",
+              "lines": [
+                {
+                  "text": "你可以按需要继续编辑。",
+                  "source_ids": []
+                }
+              ],
+              "hold_seconds": 10
+            }
+          ]
+        },
+        "rationale": "用素材事实和中性开场形成可编辑首稿"
+      },
+      "observation": {
+        "ok": true,
+        "script_version": 1,
+        "script": {
+          "title": "小影功能演示",
+          "scenes": [
+            {
+              "visual": "创作者出镜",
+              "lines": [
+                {
+                  "text": "今天看看这个功能。",
+                  "source_ids": []
+                }
+              ],
+              "hold_seconds": 10
+            },
+            {
+              "visual": "产品界面示意",
+              "lines": [
+                {
+                  "text": "支持添加贴纸。",
+                  "source_ids": [
+                    "P01"
+                  ]
+                }
+              ],
+              "hold_seconds": 10
+            },
+            {
+              "visual": "结尾文字卡",
+              "lines": [
+                {
+                  "text": "你可以按需要继续编辑。",
+                  "source_ids": []
+                }
+              ],
+              "hold_seconds": 10
+            }
+          ]
+        },
+        "checks_invalidated": true,
+        "next_required": "Estimate duration AND check rules for this exact version."
+      },
+      "next_action": "estimate_duration"
+    },
+    {
+      "step": 4,
+      "action": {
+        "tool": "estimate_duration",
+        "arguments": {},
+        "rationale": "实际计算当前版本每个分镜与总时长"
+      },
+      "observation": {
+        "ok": true,
+        "script_version": 1,
+        "passed": false,
+        "estimated_total_seconds": 36.5,
+        "target_seconds": 30,
+        "over_by_seconds": 6.5,
+        "scenes": [
+          {
+            "scene": 1,
+            "spoken_characters": 8,
+            "spoken_seconds": 2.0,
+            "hold_seconds": 10,
+            "estimated_seconds": 12
+          },
+          {
+            "scene": 2,
+            "spoken_characters": 6,
+            "spoken_seconds": 1.5,
+            "hold_seconds": 10,
+            "estimated_seconds": 12
+          },
+          {
+            "scene": 3,
+            "spoken_characters": 10,
+            "spoken_seconds": 2.5,
+            "hold_seconds": 10,
+            "estimated_seconds": 12.5
+          }
+        ],
+        "method": "Synthetic 4 spoken characters/second, min 2 seconds per shot plus explicit holds. Not TTS measurement."
+      },
+      "next_action": "check_rules"
+    },
+    {
+      "step": 5,
+      "action": {
+        "tool": "check_rules",
+        "arguments": {},
+        "rationale": "逐条验证事实和引用，不能沿用旧检查"
+      },
+      "observation": {
+        "ok": true,
+        "script_version": 1,
+        "passed": true,
+        "risks": [],
+        "rule_version": "synthetic-brand-v1",
+        "note": "Exact supported facts or approved neutral lines only; no arbitrary semantic claim verifier."
+      },
+      "next_action": "compose_script"
+    },
+    {
+      "step": 6,
+      "action": {
+        "tool": "compose_script",
+        "arguments": {
+          "title": "小影功能演示",
+          "scenes": [
+            {
+              "visual": "创作者出镜",
+              "lines": [
+                {
+                  "text": "今天看看这个功能。",
+                  "source_ids": []
+                }
+              ],
+              "hold_seconds": 7
+            },
+            {
+              "visual": "产品界面示意",
+              "lines": [
+                {
+                  "text": "支持添加贴纸。",
+                  "source_ids": [
+                    "P01"
+                  ]
+                }
+              ],
+              "hold_seconds": 7
+            },
+            {
+              "visual": "结尾文字卡",
+              "lines": [
+                {
+                  "text": "你可以按需要继续编辑。",
+                  "source_ids": []
+                }
+              ],
+              "hold_seconds": 7
+            }
+          ]
+        },
+        "rationale": "依据实际检查压缩停留、保留可追溯事实"
+      },
+      "observation": {
+        "ok": true,
+        "script_version": 2,
+        "script": {
+          "title": "小影功能演示",
+          "scenes": [
+            {
+              "visual": "创作者出镜",
+              "lines": [
+                {
+                  "text": "今天看看这个功能。",
+                  "source_ids": []
+                }
+              ],
+              "hold_seconds": 7
+            },
+            {
+              "visual": "产品界面示意",
+              "lines": [
+                {
+                  "text": "支持添加贴纸。",
+                  "source_ids": [
+                    "P01"
+                  ]
+                }
+              ],
+              "hold_seconds": 7
+            },
+            {
+              "visual": "结尾文字卡",
+              "lines": [
+                {
+                  "text": "你可以按需要继续编辑。",
+                  "source_ids": []
+                }
+              ],
+              "hold_seconds": 7
+            }
+          ]
+        },
+        "checks_invalidated": true,
+        "next_required": "Estimate duration AND check rules for this exact version."
+      },
+      "next_action": "estimate_duration"
+    },
+    {
+      "step": 7,
+      "action": {
+        "tool": "estimate_duration",
+        "arguments": {},
+        "rationale": "实际计算当前版本每个分镜与总时长"
+      },
+      "observation": {
+        "ok": true,
+        "script_version": 2,
+        "passed": true,
+        "estimated_total_seconds": 27.5,
+        "target_seconds": 30,
+        "over_by_seconds": 0,
+        "scenes": [
+          {
+            "scene": 1,
+            "spoken_characters": 8,
+            "spoken_seconds": 2.0,
+            "hold_seconds": 7,
+            "estimated_seconds": 9
+          },
+          {
+            "scene": 2,
+            "spoken_characters": 6,
+            "spoken_seconds": 1.5,
+            "hold_seconds": 7,
+            "estimated_seconds": 9
+          },
+          {
+            "scene": 3,
+            "spoken_characters": 10,
+            "spoken_seconds": 2.5,
+            "hold_seconds": 7,
+            "estimated_seconds": 9.5
+          }
+        ],
+        "method": "Synthetic 4 spoken characters/second, min 2 seconds per shot plus explicit holds. Not TTS measurement."
+      },
+      "next_action": "check_rules"
+    },
+    {
+      "step": 8,
+      "action": {
+        "tool": "check_rules",
+        "arguments": {},
+        "rationale": "逐条验证事实和引用，不能沿用旧检查"
+      },
+      "observation": {
+        "ok": true,
+        "script_version": 2,
+        "passed": true,
+        "risks": [],
+        "rule_version": "synthetic-brand-v1",
+        "note": "Exact supported facts or approved neutral lines only; no arbitrary semantic claim verifier."
+      },
+      "next_action": "finish"
+    },
+    {
+      "step": 9,
+      "action": {
+        "tool": "finish",
+        "arguments": {},
+        "rationale": "当前版本两项检查通过，返回可编辑脚本"
+      },
+      "observation": {
+        "ok": true,
+        "code": "FINISHED",
+        "status": "completed"
+      },
+      "next_action": "stop"
+    }
+  ],
+  "editable": true,
+  "published": false,
+  "boundary": "Synthetic product facts and timing. Exact fact/neutral-line grammar restricts creativity. Duration is estimate, not audio/video measurement. Mock is not real model evidence."
+}

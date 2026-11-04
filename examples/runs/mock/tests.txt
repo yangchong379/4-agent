@@ -1,0 +1,30 @@
+test_http_body_never_leaked (test_adapter.TestAdapter.test_http_body_never_leaked) ... ok
+test_insecure_base_url_rejected (test_adapter.TestAdapter.test_insecure_base_url_rejected) ... ok
+test_multiple_calls_rejected (test_adapter.TestAdapter.test_multiple_calls_rejected) ... ok
+test_observation_provider_id_and_memory_reasoning_replay (test_adapter.TestAdapter.test_observation_provider_id_and_memory_reasoning_replay) ... ok
+test_all_neutral_is_not_grounded_script (test_script.TestScript.test_all_neutral_is_not_grounded_script) ... ok
+test_bad_input_type (test_script.TestScript.test_bad_input_type) ... ok
+test_duration_is_revised_and_rechecked (test_script.TestScript.test_duration_is_revised_and_rechecked) ... ok
+test_empty_facts_rejected (test_script.TestScript.test_empty_facts_rejected) ... ok
+test_false_finish_cannot_bypass_checks (test_script.TestScript.test_false_finish_cannot_bypass_checks) ... ok
+test_impossible_time_explicit (test_script.TestScript.test_impossible_time_explicit) ... ok
+test_material_replace_changes_narration (test_script.TestScript.test_material_replace_changes_narration) ... ok
+test_missing_audience (test_script.TestScript.test_missing_audience) ... ok
+test_missing_duration (test_script.TestScript.test_missing_duration) ... ok
+test_model_error_not_mock_fallback (test_script.TestScript.test_model_error_not_mock_fallback) ... ok
+test_normal_longer_target (test_script.TestScript.test_normal_longer_target) ... ok
+test_query_rewrite (test_script.TestScript.test_query_rewrite) ... ok
+test_rule_failure_is_corrected (test_script.TestScript.test_rule_failure_is_corrected) ... ok
+test_step_limit_preserves_draft (test_script.TestScript.test_step_limit_preserves_draft) ... ok
+test_sum_of_scenes (test_script.TestScript.test_sum_of_scenes) ... ok
+test_tool_permanent (test_script.TestScript.test_tool_permanent) ... ok
+test_tool_retry (test_script.TestScript.test_tool_retry) ... ok
+test_unknown_material (test_script.TestScript.test_unknown_material) ... ok
+test_unsupported_percentage_rejected (test_script.TestScript.test_unsupported_percentage_rejected) ... ok
+test_update_invalidates_both_checks (test_script.TestScript.test_update_invalidates_both_checks) ... ok
+test_wrong_source_id_rejected (test_script.TestScript.test_wrong_source_id_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.028s
+
+OK
