@@ -1,0 +1,183 @@
+{
+  "reviewer": "Codex AI audit of actual local outputs; not independent human sign-off",
+  "reviewed_at_utc": "2026-11-04T18:02:09.754024+00:00",
+  "metrics": {
+    "passed": 12,
+    "total": 12,
+    "failed_cases": []
+  },
+  "checks": {
+    "source_fingerprint_matches_current": true,
+    "actual_citations_or_facts_valid": true,
+    "latest_checks_valid": true,
+    "model_calls_bounded": true,
+    "raw_output_count_matches": true
+  },
+  "issues": [
+    {
+      "kind": "shorter_than_target_preference",
+      "case": "duration_revision",
+      "actual_seconds": 17.0,
+      "target_seconds": 30,
+      "meaning": "Current contract checks only upper bound; near-target pacing is not implemented or proven."
+    },
+    {
+      "kind": "shorter_than_target_preference",
+      "case": "normal",
+      "actual_seconds": 23.0,
+      "target_seconds": 45,
+      "meaning": "Current contract checks only upper bound; near-target pacing is not implemented or proven."
+    },
+    {
+      "kind": "shorter_than_target_preference",
+      "case": "replaced",
+      "actual_seconds": 17.3,
+      "target_seconds": 30,
+      "meaning": "Current contract checks only upper bound; near-target pacing is not implemented or proven."
+    },
+    {
+      "kind": "topic_mismatch_misreported_completed",
+      "case": "replaced",
+      "meaning": "Confirmed: original subtitle topic was replaced by a sticker-only script and falsely marked completed for that business request. Fact checks passed, but theme requirement was not met."
+    },
+    {
+      "kind": "shorter_than_target_preference",
+      "case": "rewrite",
+      "actual_seconds": 22.0,
+      "target_seconds": 30,
+      "meaning": "Current contract checks only upper bound; near-target pacing is not implemented or proven."
+    },
+    {
+      "kind": "shorter_than_target_preference",
+      "case": "tool_retry",
+      "actual_seconds": 11.0,
+      "target_seconds": 30,
+      "meaning": "Current contract checks only upper bound; near-target pacing is not implemented or proven."
+    }
+  ],
+  "records": [
+    {
+      "case": "duration_revision",
+      "status": "completed",
+      "calls": 8,
+      "protocol_rejections": 1
+    },
+    {
+      "case": "impossible",
+      "status": "constraints_unmet",
+      "calls": 10,
+      "protocol_rejections": 1
+    },
+    {
+      "case": "missing",
+      "status": "needs_info",
+      "calls": 5,
+      "protocol_rejections": 0
+    },
+    {
+      "case": "missing_duration",
+      "status": "needs_info",
+      "calls": 2,
+      "protocol_rejections": 0
+    },
+    {
+      "case": "no_materials",
+      "status": "needs_materials",
+      "calls": 4,
+      "protocol_rejections": 0
+    },
+    {
+      "case": "normal",
+      "status": "completed",
+      "calls": 8,
+      "protocol_rejections": 1
+    },
+    {
+      "case": "replaced",
+      "status": "completed",
+      "calls": 12,
+      "protocol_rejections": 1
+    },
+    {
+      "case": "rewrite",
+      "status": "completed",
+      "calls": 8,
+      "protocol_rejections": 1
+    },
+    {
+      "case": "short_target",
+      "status": "completed",
+      "calls": 7,
+      "protocol_rejections": 1
+    },
+    {
+      "case": "step_limit",
+      "status": "incomplete_step_limit",
+      "calls": 3,
+      "protocol_rejections": 0
+    },
+    {
+      "case": "tool_failure",
+      "status": "tool_failed",
+      "calls": 7,
+      "protocol_rejections": 1
+    },
+    {
+      "case": "tool_retry",
+      "status": "completed",
+      "calls": 8,
+      "protocol_rejections": 1
+    }
+  ],
+  "files_sha256": {
+    "summary.json": "4b74297c102f5353e7bbde216208fe591fadba87f19e5fb76eb49aa794404bcc",
+    "duration_revision/dataset.json": "90c246354ff1fe5d71e2881144b05ea806c35f03c003d57ab584cde0a704c5e8",
+    "duration_revision/input.json": "20d9461f41c090abd426259c4129ded8885c00189d1fb562c4902a456a3ba886",
+    "duration_revision/result.json": "9a42a0ac75f76c0a02270eb597bf717815010c5338f0426d1b97cbdfafc8e4e3",
+    "impossible/dataset.json": "90c246354ff1fe5d71e2881144b05ea806c35f03c003d57ab584cde0a704c5e8",
+    "impossible/input.json": "72b168cf23b453baa10e4dd628a104764434003f677fd932e6c033ca40d274bc",
+    "impossible/result.json": "c3564de14a020d64bd9ce8d7b237c0d47436921f1da7e3ec0aeb27521cfefdd4",
+    "missing/dataset.json": "90c246354ff1fe5d71e2881144b05ea806c35f03c003d57ab584cde0a704c5e8",
+    "missing/input.json": "ab111d69d3b99e2e01df8dc66d242c4eac2403244ce6513c51b4dc03c55e189a",
+    "missing/result.json": "0bc28626fb3e8186d2125d755142f09fdefc7c41f26466b2f6c49252eb5ad7e7",
+    "missing_duration/dataset.json": "90c246354ff1fe5d71e2881144b05ea806c35f03c003d57ab584cde0a704c5e8",
+    "missing_duration/input.json": "43a0565544a3c4ed4b895cc28d7e3903d7cd062aa2ec38a7a083a3c14c4824fe",
+    "missing_duration/result.json": "5b1445dca7c0cea5edf841c3e608ce333c2c9663a6e294d4ffe35a143eec524c",
+    "normal/dataset.json": "90c246354ff1fe5d71e2881144b05ea806c35f03c003d57ab584cde0a704c5e8",
+    "normal/input.json": "b1016a80cde9dbd7a0714166fa0691e61f22ac83e00e5d2110e3b45af34281cf",
+    "normal/result.json": "bd7619dede9504348e5ea3dbb0a8f4b65239fa2c6f978ece66d347b9011f7625",
+    "no_materials/dataset.json": "90c246354ff1fe5d71e2881144b05ea806c35f03c003d57ab584cde0a704c5e8",
+    "no_materials/input.json": "4f117366a1b32e9334aa27e554570ec500eddd17e9cc65d3ec7346fc48583834",
+    "no_materials/result.json": "c93c4215cbcbfd1cb1833bd7249a61384ce5cd39890848a89e95ac562ff190df",
+    "replaced/dataset.json": "4dbb220513a44f7a316bc284db7f4ef0f9742c1805d144cc8c4a3b55b899e5b8",
+    "replaced/input.json": "06ae852906500ab7cc96564fe88f9cc7dd578a3b336750639ecf448bd410df5a",
+    "replaced/result.json": "df6dda693d5cf9b0e39eea40baef70cda85b4555e3ef552014e49f42bdaad7ff",
+    "rewrite/dataset.json": "90c246354ff1fe5d71e2881144b05ea806c35f03c003d57ab584cde0a704c5e8",
+    "rewrite/input.json": "a321d7abc8e6c89a5bf9d99270e60564ef19cb64e61128680c6df986ed9a23fb",
+    "rewrite/result.json": "703db228de5695c773be00b3f9abd5557e2d7f8e04586e77f75786c79ecd715c",
+    "short_target/dataset.json": "90c246354ff1fe5d71e2881144b05ea806c35f03c003d57ab584cde0a704c5e8",
+    "short_target/input.json": "48232f0c4fd9d41f8cf5523618da4dc85182edbcadfca2f40618a35c0e2923e7",
+    "short_target/result.json": "b2997af903acd3fdaf95d0ee696e0e3abce71e5c9b970c617a9d5e9f6ebf86a3",
+    "step_limit/dataset.json": "90c246354ff1fe5d71e2881144b05ea806c35f03c003d57ab584cde0a704c5e8",
+    "step_limit/input.json": "7590c976b907fad46d02a9497c463cfed609dadd7a22b5dfdd05a5ab9cf2bb66",
+    "step_limit/result.json": "b832bdbe228728b42ffee6f4f28a826c693a95cf8950c5403e72602e0fcaa861",
+    "tool_failure/dataset.json": "90c246354ff1fe5d71e2881144b05ea806c35f03c003d57ab584cde0a704c5e8",
+    "tool_failure/input.json": "1003e122a3e82bce9c1b80ffff5a67f01572f5161bc960bd4cd2dd6c9f163b33",
+    "tool_failure/result.json": "1c5b9426db4b0188eedd6ccbd30227955cb2d2bae7a5dbd7aa4d949040698cbe",
+    "tool_retry/dataset.json": "90c246354ff1fe5d71e2881144b05ea806c35f03c003d57ab584cde0a704c5e8",
+    "tool_retry/input.json": "2ddf378c0aabdad648d9ef2275dccea42af97cc9ccf5ceff207f60f1a2b34a8d",
+    "tool_retry/result.json": "8490d0981794ffcbf046ebe49a7d50f3e4414c0f7ffdd78d34ab274efc186a41"
+  },
+  "scope": "Facts/source IDs, bounds and version invariants audited; these do not certify theme fit or creative quality. Original automatic PASS retained; one confirmed business failure recorded separately.",
+  "confirmed_business_failures": [
+    {
+      "case": "replaced",
+      "request_topic": "小影字幕",
+      "actual_fact_lines": [
+        "支持添加贴纸。"
+      ],
+      "reported_status": "completed",
+      "verdict": "Original topic not satisfied; automatic acceptance checks missed this."
+    }
+  ]
+}

@@ -3,5 +3,8 @@
   "evidence_preparation_at": "2026-11-04T22:58:50.311846+08:00",
   "elapsed_wall_clock_minutes": 10.12,
   "scope": "AI implementation, dialogue and waiting from first local file to this cutoff; not candidate independent coding",
-  "candidate_independent_coding_time": "not recorded"
+  "candidate_independent_coding_time": "not recorded",
+  "latest_live_evidence_added_at": "2026-11-05T02:05:43.230413+08:00",
+  "latest_actual_live_duration_seconds": 824.828,
+  "latest_live_timing_scope": "Remote model/tool elapsed time, not candidate independent coding time; original stage timing preserved"
 }

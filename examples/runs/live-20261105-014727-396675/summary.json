@@ -1,0 +1,218 @@
+{
+  "mode": "live_model",
+  "model": "deepseek-flash",
+  "generated_at_utc": "2026-11-04T18:01:12.569627+00:00",
+  "python": "3.11.4",
+  "source_sha256": "96abdbcb339d7a50a9a688228372faf9ec50836fb0dedb8fa8b23a6f67420796",
+  "duration_seconds": 824.828,
+  "passed": 12,
+  "total": 12,
+  "cases": [
+    {
+      "case": "normal",
+      "expected": "completed",
+      "actual": "completed",
+      "estimated_seconds": 23.0,
+      "script_version": 1,
+      "checks": {
+        "expected_status": true,
+        "bounded": true,
+        "no_publication": true,
+        "actual_checks_passed": true,
+        "same_version": true,
+        "exact_scene_sum": true,
+        "within_duration": true,
+        "grounded_facts": true,
+        "material_sources_present": true
+      },
+      "passed": true,
+      "result": "normal/result.json"
+    },
+    {
+      "case": "duration_revision",
+      "expected": "completed",
+      "actual": "completed",
+      "estimated_seconds": 17.0,
+      "script_version": 1,
+      "checks": {
+        "expected_status": true,
+        "bounded": true,
+        "no_publication": true,
+        "actual_checks_passed": true,
+        "same_version": true,
+        "exact_scene_sum": true,
+        "within_duration": true,
+        "grounded_facts": true,
+        "material_sources_present": true
+      },
+      "passed": true,
+      "result": "duration_revision/result.json"
+    },
+    {
+      "case": "short_target",
+      "expected": "completed",
+      "actual": "completed",
+      "estimated_seconds": 4,
+      "script_version": 1,
+      "checks": {
+        "expected_status": true,
+        "bounded": true,
+        "no_publication": true,
+        "actual_checks_passed": true,
+        "same_version": true,
+        "exact_scene_sum": true,
+        "within_duration": true,
+        "grounded_facts": true,
+        "material_sources_present": true
+      },
+      "passed": true,
+      "result": "short_target/result.json"
+    },
+    {
+      "case": "missing",
+      "expected": "needs_info",
+      "actual": "needs_info",
+      "estimated_seconds": null,
+      "script_version": 0,
+      "checks": {
+        "expected_status": true,
+        "bounded": true,
+        "no_publication": true
+      },
+      "passed": true,
+      "result": "missing/result.json"
+    },
+    {
+      "case": "missing_duration",
+      "expected": "needs_info",
+      "actual": "needs_info",
+      "estimated_seconds": null,
+      "script_version": 0,
+      "checks": {
+        "expected_status": true,
+        "bounded": true,
+        "no_publication": true
+      },
+      "passed": true,
+      "result": "missing_duration/result.json"
+    },
+    {
+      "case": "no_materials",
+      "expected": "needs_materials",
+      "actual": "needs_materials",
+      "estimated_seconds": null,
+      "script_version": 0,
+      "checks": {
+        "expected_status": true,
+        "bounded": true,
+        "no_publication": true
+      },
+      "passed": true,
+      "result": "no_materials/result.json"
+    },
+    {
+      "case": "rewrite",
+      "expected": "completed",
+      "actual": "completed",
+      "estimated_seconds": 22.0,
+      "script_version": 1,
+      "checks": {
+        "expected_status": true,
+        "bounded": true,
+        "no_publication": true,
+        "actual_checks_passed": true,
+        "same_version": true,
+        "exact_scene_sum": true,
+        "within_duration": true,
+        "grounded_facts": true,
+        "material_sources_present": true
+      },
+      "passed": true,
+      "result": "rewrite/result.json"
+    },
+    {
+      "case": "tool_retry",
+      "expected": "completed",
+      "actual": "completed",
+      "estimated_seconds": 11.0,
+      "script_version": 1,
+      "checks": {
+        "expected_status": true,
+        "bounded": true,
+        "no_publication": true,
+        "actual_checks_passed": true,
+        "same_version": true,
+        "exact_scene_sum": true,
+        "within_duration": true,
+        "grounded_facts": true,
+        "material_sources_present": true
+      },
+      "passed": true,
+      "result": "tool_retry/result.json"
+    },
+    {
+      "case": "tool_failure",
+      "expected": "tool_failed",
+      "actual": "tool_failed",
+      "estimated_seconds": null,
+      "script_version": 1,
+      "checks": {
+        "expected_status": true,
+        "bounded": true,
+        "no_publication": true
+      },
+      "passed": true,
+      "result": "tool_failure/result.json"
+    },
+    {
+      "case": "impossible",
+      "expected": "constraints_unmet",
+      "actual": "constraints_unmet",
+      "estimated_seconds": 2,
+      "script_version": 2,
+      "checks": {
+        "expected_status": true,
+        "bounded": true,
+        "no_publication": true
+      },
+      "passed": true,
+      "result": "impossible/result.json"
+    },
+    {
+      "case": "replaced",
+      "expected": "completed",
+      "actual": "completed",
+      "estimated_seconds": 17.3,
+      "script_version": 2,
+      "checks": {
+        "expected_status": true,
+        "bounded": true,
+        "no_publication": true,
+        "actual_checks_passed": true,
+        "same_version": true,
+        "exact_scene_sum": true,
+        "within_duration": true,
+        "grounded_facts": true,
+        "material_sources_present": true,
+        "replacement_uses_new_fact": true
+      },
+      "passed": true,
+      "result": "replaced/result.json"
+    },
+    {
+      "case": "step_limit",
+      "expected": "incomplete_step_limit",
+      "actual": "incomplete_step_limit",
+      "estimated_seconds": null,
+      "script_version": 0,
+      "checks": {
+        "expected_status": true,
+        "bounded": true,
+        "no_publication": true
+      },
+      "passed": true,
+      "result": "step_limit/result.json"
+    }
+  ],
+  "boundary": "Synthetic material and deterministic time estimation. Live may draft within time initially: inspect trace for actual corrections; do not fabricate a forced overrun."
+}

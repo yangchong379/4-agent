@@ -1,0 +1,257 @@
+{
+  "schema_version": "1.0",
+  "mode": "live_model",
+  "model": "deepseek-flash",
+  "request": {
+    "audience": null,
+    "platform": "抖音",
+    "request_id": "missing",
+    "style": "轻松",
+    "target_seconds": 30,
+    "topic": "小影字幕"
+  },
+  "status": "needs_info",
+  "stop_reason": "finished",
+  "error": null,
+  "title": null,
+  "storyboard": [],
+  "estimated_total_seconds": null,
+  "source_material_ids": [],
+  "retrieved_materials": [
+    {
+      "id": "P01",
+      "product": "小影",
+      "keywords": [
+        "字幕",
+        "小影",
+        "剪辑",
+        "渲染",
+        "视频"
+      ],
+      "facts": [
+        "支持字幕。"
+      ]
+    }
+  ],
+  "script_version": 0,
+  "duration_check": null,
+  "rule_check": null,
+  "risks": [
+    {
+      "code": "RULES_NOT_CHECKED"
+    }
+  ],
+  "missing_fields": [
+    "audience"
+  ],
+  "uncompleted_reason": {
+    "status": "needs_info",
+    "missing_fields": [
+      "audience"
+    ],
+    "tool_errors": 0,
+    "risks": [
+      {
+        "code": "RULES_NOT_CHECKED"
+      }
+    ],
+    "hint": "补充信息/素材，或修订后重新检查。"
+  },
+  "dataset_sha256": "52d1770ffa4bb0c78ac3cd4e43d1625f243929e39c4821c33ee8e526aed442b7",
+  "model_calls": 5,
+  "max_steps": 32,
+  "trace": [
+    {
+      "step": 1,
+      "action": {
+        "tool": "inspect_request",
+        "arguments": {},
+        "rationale": "Request lacks audience; inspect to confirm missing fields and allowed lines."
+      },
+      "observation": {
+        "ok": true,
+        "request": {
+          "audience": null,
+          "platform": "抖音",
+          "request_id": "missing",
+          "style": "轻松",
+          "target_seconds": 30,
+          "topic": "小影字幕"
+        },
+        "missing_fields": [
+          "audience"
+        ],
+        "brand_rules": {
+          "version": "synthetic-brand-v1",
+          "prohibited_phrases": [
+            "效率提升80%",
+            "保证",
+            "百分百",
+            "全网第一"
+          ],
+          "characters_per_second": 4,
+          "minimum_scene_seconds": 2
+        },
+        "approved_neutral_lines": [
+          "今天看看这个功能。",
+          "跟着画面一起看。",
+          "你可以按需要继续编辑。",
+          "现在试着写下你的想法。"
+        ],
+        "approved_titles": [
+          "小影功能演示",
+          "一个功能小技巧",
+          "看看这个功能"
+        ],
+        "visual_options": [
+          "产品界面示意",
+          "字幕局部特写",
+          "创作者出镜",
+          "结尾文字卡"
+        ],
+        "scope": "Facts must be exact retrieved material statements. Narration is editable but edits require fresh checks."
+      },
+      "next_action": "search_materials"
+    },
+    {
+      "step": 2,
+      "action": {
+        "tool": "search_materials",
+        "arguments": {
+          "query": "小影字幕"
+        },
+        "rationale": "Look up actual synthetic facts about 小影字幕 before drafting."
+      },
+      "observation": {
+        "ok": true,
+        "matches": [
+          {
+            "id": "P01",
+            "product": "小影",
+            "keywords": [
+              "字幕",
+              "小影",
+              "剪辑",
+              "渲染",
+              "视频"
+            ],
+            "facts": [
+              "支持字幕。"
+            ]
+          }
+        ],
+        "query": "小影字幕",
+        "note": "No matching fact means ask for material, never invent features or efficacy."
+      },
+      "next_action": "search_materials"
+    },
+    {
+      "step": 3,
+      "action": {
+        "tool": "search_materials",
+        "arguments": {
+          "query": "小影 字幕 编辑 视频剪辑 功能"
+        },
+        "rationale": "Only one terse fact found; try a second query for more detail."
+      },
+      "observation": {
+        "ok": true,
+        "matches": [
+          {
+            "id": "P01",
+            "product": "小影",
+            "keywords": [
+              "字幕",
+              "小影",
+              "剪辑",
+              "渲染",
+              "视频"
+            ],
+            "facts": [
+              "支持字幕。"
+            ]
+          }
+        ],
+        "query": "小影 字幕 编辑 视频剪辑 功能",
+        "note": "No matching fact means ask for material, never invent features or efficacy."
+      },
+      "next_action": "compose_script"
+    },
+    {
+      "step": 4,
+      "action": {
+        "tool": "compose_script",
+        "arguments": {
+          "title": "看看这个功能",
+          "scenes": [
+            {
+              "visual": "创作者出镜",
+              "lines": [
+                {
+                  "text": "今天看看这个功能。",
+                  "source_ids": []
+                }
+              ],
+              "hold_seconds": 0
+            },
+            {
+              "visual": "字幕局部特写",
+              "lines": [
+                {
+                  "text": "支持字幕。",
+                  "source_ids": [
+                    "P01"
+                  ]
+                }
+              ],
+              "hold_seconds": 1
+            },
+            {
+              "visual": "产品界面示意",
+              "lines": [
+                {
+                  "text": "跟着画面一起看。",
+                  "source_ids": []
+                }
+              ],
+              "hold_seconds": 0
+            },
+            {
+              "visual": "结尾文字卡",
+              "lines": [
+                {
+                  "text": "你可以按需要继续编辑。",
+                  "source_ids": []
+                }
+              ],
+              "hold_seconds": 0
+            }
+          ]
+        },
+        "rationale": "One grounded fact (支持字幕) plus approved neutral lines; short scenes fit 30s max without invented claims."
+      },
+      "observation": {
+        "ok": false,
+        "code": "MISSING_INPUT"
+      },
+      "next_action": "finish"
+    },
+    {
+      "step": 5,
+      "action": {
+        "tool": "finish",
+        "arguments": {},
+        "rationale": "Audience is missing from the request and compose_script was rejected with MISSING_INPUT; cannot finalize without it."
+      },
+      "observation": {
+        "ok": true,
+        "code": "FINISHED",
+        "status": "needs_info"
+      },
+      "next_action": "stop"
+    }
+  ],
+  "editable": true,
+  "published": false,
+  "boundary": "Synthetic product facts and timing. Exact fact/neutral-line grammar restricts creativity. Duration is estimate, not audio/video measurement. Mock is not real model evidence."
+}
