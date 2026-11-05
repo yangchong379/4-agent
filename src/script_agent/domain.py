@@ -7,6 +7,42 @@ NEUTRAL=['今天看看这个功能。','跟着画面一起看。','你可以按�
 VISUALS=['产品界面示意','字幕局部特写','创作者出镜','结尾文字卡']
 TITLES=['小影功能演示','一个功能小技巧','看看这个功能']
 
+TOPIC_ALIASES = {
+    '字幕': '字幕', '文字上屏': '字幕', '自动文字上屏': '字幕',
+    '字幕样式': '字幕样式', '手动调整字幕样式': '字幕样式',
+    '贴纸': '贴纸', '添加贴纸': '贴纸',
+    '剪辑': '通用功能', '视频': '通用功能', '视频剪辑': '通用功能',
+}
+FEATURE_FACTS = {
+    '字幕': {'支持字幕', '支持字幕样式', '支持手动调整字幕样式'},
+    '字幕样式': {'支持字幕样式', '支持手动调整字幕样式'},
+    '贴纸': {'支持贴纸', '支持添加贴纸'},
+}
+TOPIC_SEARCH_HINTS = {'字幕': '字幕样式', '字幕样式': '字幕样式', '贴纸': '贴纸', '通用功能': '小影'}
+
+
+def topic_requirement(topic):
+    """Resolve the supported feature vocabulary from the immutable user topic."""
+    normalized = topic.strip().strip('。！？?!')
+    feature = normalized.removeprefix('小影').strip()
+    for suffix in ('使用教程', '功能介绍', '功能演示', '教程', '功能', '演示'):
+        if feature.endswith(suffix):
+            feature = feature.removesuffix(suffix).strip()
+            break
+    if not feature and normalized.startswith('小影'):
+        return '通用功能'
+    return TOPIC_ALIASES.get(feature)
+
+
+def supports_topic(fact, requirement):
+    return requirement == '通用功能' or fact.strip().rstrip('。.!！') in FEATURE_FACTS.get(requirement, ())
+
+
+def topic_facts(materials, topic):
+    requirement = topic_requirement(topic)
+    return [(material['id'], fact) for material in materials for fact in material['facts']
+            if supports_topic(fact, requirement)]
+
 def digest(value):return hashlib.sha256(json.dumps(value,ensure_ascii=False,sort_keys=True).encode()).hexdigest()
 
 def validate_request(raw):
@@ -50,16 +86,22 @@ def estimate(script,target):
     total=round(sum(s['estimated_seconds'] for s in scenes),1)
     return {'passed':total<=target,'estimated_total_seconds':total,'target_seconds':target,'over_by_seconds':round(max(0,total-target),1),'scenes':scenes,'method':'Synthetic 4 spoken characters/second, min 2 seconds per shot plus explicit holds. Not TTS measurement.'}
 
-def check(script,materials,rules):
-    risks=[];sources={m['id']:m for m in materials};grounded=0
+def check(script, materials, rules, *, topic):
+    risks=[];sources={m['id']:m for m in materials};grounded=[]
+    requirement = topic_requirement(topic)
     if script['title'] not in TITLES:risks.append({'code':'TITLE_NOT_APPROVED','location':'title'})
     for i,s in enumerate(script['scenes'],1):
         for j,line in enumerate(s['lines'],1):
             text,ids=line['text'],line['source_ids'];location=f'scene {i} line {j}'
             if text in NEUTRAL and not ids:continue
             if not ids or any(mid not in sources or text not in sources[mid]['facts'] for mid in ids):risks.append({'code':'UNSUPPORTED_FACT_OR_CITATION','location':location,'text':text})
-            else:grounded+=1
+            else:
+                grounded.append(text)
+                if not supports_topic(text, requirement):
+                    risks.append({'code':'OFF_TOPIC_FACT','location':location,'text':text,'topic':topic})
             if any(p in text for p in rules['prohibited_phrases']):risks.append({'code':'BRAND_PROHIBITED_CLAIM','location':location,'text':text})
     if not grounded:risks.append({'code':'NO_GROUNDED_PRODUCT_FACT'})
-    if any(s['visual']=='字幕局部特写' for s in script['scenes']) and not any('字幕' in fact for m in materials for fact in m['facts']):risks.append({'code':'UNSUPPORTED_VISUAL_CONTEXT'})
-    return {'passed':not risks,'risks':risks,'rule_version':rules['version'],'note':'Exact supported facts or approved neutral lines only; no arbitrary semantic claim verifier.'}
+    if not any(supports_topic(fact, requirement) for fact in grounded):
+        risks.append({'code':'TOPIC_EVIDENCE_MISSING','topic':topic})
+    if any(s['visual']=='字幕局部特写' for s in script['scenes']) and not any(supports_topic(fact, '字幕') for fact in grounded):risks.append({'code':'UNSUPPORTED_VISUAL_CONTEXT'})
+    return {'passed':not risks,'risks':risks,'rule_version':rules['version'],'note':'Exact citations, topic vocabulary and approved neutral lines are checked.'}

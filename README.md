@@ -2,7 +2,7 @@
 
 根据合成产品素材，形成有来源、可编辑的标题、分镜、旁白和时长检查结果。独立仓库：[yangchong379/4-agent](https://github.com/yangchong379/4-agent)。Python 3.11+标准库，无Agent框架或第三方运行依赖，无真实发布。
 
-当前实际结果：**25个自动化测试、12/12离线场景通过**。30秒目标首稿实际估算36.5秒，模型Mock策略观察超限后调整停留和分镜，修订为27.5秒，并再次估时和核规则。1秒目标修订仍为2秒，明确constraints_unmet。Mock只验证流程，本轮真实模型已执行（详见新增实际记录）。
+当前修复版通过 **27 项自动化测试和 13 组离线场景**。脚本规则检查会核对每条引用的产品事实能否支持原主题。主题匹配目前覆盖字幕、字幕样式、贴纸及通用功能，使用明确的词表和别名。检索到旧关键词但缺少原主题事实时可以补查。两次不同查询后仍无依据，可结束为 `needs_materials`。回放原 `replaced` 输入时，Agent 补查到 P02 字幕样式事实并完成。仅保留贴纸资料的回归返回 `needs_materials`。[回归记录](examples/regressions/topic-consistency.json)
 
 ```bash
 python scripts/run.py --input examples/inputs/duration_revision.json --output .runtime/script.json
@@ -39,4 +39,4 @@ py -3.11 scripts/connect_deepseek.py --retry-failed
 
 ## 本轮真实模型记录
 
-真实模型自动断言12/12通过；业务复核另发现1例不满足原主题。[实际原始结果与AI复核](examples/runs/live-20261105-014727-396675/REVIEW.md)。运行代码和数据边界不变，失败不改写；实际状态与质量限制以该报告为准。
+修复前真实模型的 12 组自动断言均通过，业务复核发现一例偏题却标记完成。修复后已完成离线回归。[修复前原始结果与复核](examples/runs/live-20261105-014727-396675/REVIEW.md)

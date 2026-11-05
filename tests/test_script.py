@@ -34,17 +34,49 @@ class TestScript(unittest.TestCase):
     def test_impossible_time_explicit(self):self.assertEqual(self.runq(request(target_seconds=1))['status'],'constraints_unmet')
     def test_sum_of_scenes(self):
         r=self.runq();self.assertEqual(round(sum(s['estimated_seconds'] for s in r['storyboard']),1),r['estimated_total_seconds'])
-    def test_material_replace_changes_narration(self):
-        self.data['materials'][0]['facts']=['支持添加贴纸。'];r=self.runq();self.assertEqual(r['status'],'completed');self.assertIn('支持添加贴纸。',''.join(s['narration'] for s in r['storyboard']))
+    def test_material_replace_searches_for_original_topic(self):
+        self.data['materials'][0]['facts'] = ['支持添加贴纸。']
+        result = self.runq()
+        searches = [event['observation'] for event in result['trace']
+                    if event.get('action', {}).get('tool') == 'search_materials']
+        self.assertEqual(result['status'], 'completed')
+        self.assertEqual(searches[0]['topic_evidence'], [])
+        self.assertEqual(result['source_material_ids'], ['P02'])
+        self.assertIn('支持手动调整字幕样式。', ''.join(scene['narration'] for scene in result['storyboard']))
+
+    def test_wrong_topic_material_cannot_make_script_complete(self):
+        self.data['materials'][0]['facts'] = ['支持添加贴纸。']
+        self.data['materials'] = self.data['materials'][:1]
+        result = self.runq()
+        self.assertEqual(result['status'], 'needs_materials')
+        self.assertEqual(result['storyboard'], [])
+        self.assertIn('TOPIC_EVIDENCE_MISSING', {risk['code'] for risk in result['risks']})
+
+    def test_off_topic_citation_fails_even_with_relevant_material_available(self):
+        class OffTopicDraft(MockModel):
+            def choose(self, req, state, history):
+                action = super().choose(req, state, history)
+                if action.tool == 'compose_script':
+                    for scene in action.arguments['scenes']:
+                        for line in scene['lines']:
+                            if line['source_ids']:
+                                line['text'] = '支持添加贴纸。'
+                return action
+
+        self.data['materials'][0]['facts'].append('支持添加贴纸。')
+        result = Agent(OffTopicDraft(), self.data).run(request())
+        self.assertEqual(result['status'], 'constraints_unmet')
+        self.assertFalse(result['rule_check']['passed'])
+        self.assertIn('OFF_TOPIC_FACT', {risk['code'] for risk in result['risks']})
     def test_unsupported_percentage_rejected(self):
         script={'title':TITLES[0],'scenes':[{'visual':'产品界面示意','lines':[{'text':'效率提升80%。','source_ids':['P01']}],'hold_seconds':0}]}
-        r=check(script,self.data['materials'],self.data['brand_rules']);self.assertFalse(r['passed']);self.assertIn('UNSUPPORTED_FACT_OR_CITATION',{x['code'] for x in r['risks']})
+        r=check(script,self.data['materials'],self.data['brand_rules'],topic='小影字幕');self.assertFalse(r['passed']);self.assertIn('UNSUPPORTED_FACT_OR_CITATION',{x['code'] for x in r['risks']})
     def test_wrong_source_id_rejected(self):
         script={'title':TITLES[0],'scenes':[{'visual':'产品界面示意','lines':[{'text':'支持字幕。','source_ids':['P02']}],'hold_seconds':0}]}
-        self.assertFalse(check(script,self.data['materials'],self.data['brand_rules'])['passed'])
+        self.assertFalse(check(script,self.data['materials'],self.data['brand_rules'],topic='小影字幕')['passed'])
     def test_all_neutral_is_not_grounded_script(self):
         script={'title':TITLES[0],'scenes':[{'visual':'产品界面示意','lines':[{'text':NEUTRAL[0],'source_ids':[]}],'hold_seconds':0}]}
-        self.assertFalse(check(script,self.data['materials'],self.data['brand_rules'])['passed'])
+        self.assertFalse(check(script,self.data['materials'],self.data['brand_rules'],topic='小影字幕')['passed'])
     def test_update_invalidates_both_checks(self):
         a=Agent(MockModel(),self.data);state={'materials':{'P01':self.data['materials'][0]},'version':1,'script':None,'duration':{'passed':True},'rules':{'passed':True},'tool_errors':0}
         args={'title':TITLES[0],'scenes':[{'visual':'产品界面示意','lines':[{'text':'支持字幕。','source_ids':['P01']}],'hold_seconds':0}]}

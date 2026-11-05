@@ -1,6 +1,8 @@
 # 03 预期、实际结果及限制
 
-Python 3.11.4实际执行：25个自动化测试通过，12/12离线场景通过。[原始报告](../examples/runs/mock/REPORT.md)、[summary](../examples/runs/mock/summary.json)、[测试日志](../examples/runs/mock/tests.txt)。不是人工编写成功截图，分镜与检查原始记录均在examples。
+修复前使用 Python 3.11.4，25 个自动化测试和 12 组离线场景通过。[原始报告](../examples/runs/mock/REPORT.md)、[summary](../examples/runs/mock/summary.json)、[测试日志](../examples/runs/mock/tests.txt)
+
+修复版通过 27 项自动化测试和 13 组离线场景。用相同的 `replaced` 请求和数据回放时，P01 的贴纸事实未通过字幕主题匹配。补查取得 P02 后，脚本引用「支持手动调整字幕样式。」并通过当版检查。仅有贴纸资料时返回 `needs_materials`，无脚本。强制把偏题但有来源的事实写进稿件也会触发 `OFF_TOPIC_FACT`，无法标为完成。修复后验证使用离线 Mock。[实际回归结果](../examples/regressions/topic-consistency.json)
 
 | 场景 | 预期 | 实际 | 秒数 | 版本 | 证据 |
 |---|---|---|---|---|---|
